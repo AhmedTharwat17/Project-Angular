@@ -8,13 +8,54 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" [src]="StoreLogo" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{Storename}}</h5>
-          <p class="card-text">We offer an explicit discount of: {{Discount}}</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
+  <div class="bg-image"style="background-image: url('{{StoreLogo}}');height: 610px;">
+    <div class="mask h-100" style="background-color: rgba(0, 0, 0, 0.6);">
+      <div class="bg-image p-5 text-center text-white">
+        <h1 class="mb-3" style="margin-top: 200px">{{Storename | uppercase}}</h1>
+        <div *ngIf="Discount === 'No Discount'; else thenBlock;"></div>
+            <ng-template #thenBlock>
+              <p>We offer an explicit discount of: {{Discount}}</p>
+            </ng-template>
+            <select class="form-select" style="width: 50%; margin:auto">
+              <option selected>Category</option>
+              <option *ngFor="let Category of CategoryList" href="#" value="{{Category.Name}}">{{Category.Name}}</option>
+            </select>
       </div>
+    </div>
+  </div>
+  <div class="input-group mb-3 mt-3">
+    <span class="input-group-text" id="inputGroup-sizing-default">Purchaser</span>
+    <input type="text" [(ngModel)]="ClientName" class="form-control" aria-label="Sizing example input">
+  </div>
+    <ng-template #products>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Number</th>
+            <th scope="col">Product</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col">Image</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let Product of ProductList">
+            <tr>
+              <th scope="row">{{Product.ID}}</th>
+              <td>{{Product.Name}}</td>
+              <td>{{Product.Quantity}}</td>
+              <td>{{Product.Price}}</td>
+              <td>
+                <img class="table-image" src="{{Product.Img}}">
+              </td>
+            </tr>
+        </tbody>
+      </table>
+    </ng-template>
+    <div class="d-flex justify-content-center mb-3" *ngIf="IsPurshased; else products;">
+      <h3>Thanks for purchasing from our Store {{ClientName}}</h3>
+    </div>
+    <div class="d-flex justify-content-center mb-3">
+      <button type="button" class="btn btn-primary " style="width: 150px;" (click)="toggleBuy()">Buy</button>
+    </div>
 </body>
 </html>
