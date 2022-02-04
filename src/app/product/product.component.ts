@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { IPerson , ICategory , DiscountOffers } from '../Shared Classes and types/interface';
+import { Component, OnInit} from '@angular/core';
+import { IProduct , ICategory , DiscountOffers } from '../Shared Classes and types/interface';
+import { ProductServiceService } from './../Services/product-service.service';
 
 @Component({
   selector: 'app-product',
@@ -11,37 +12,18 @@ export class ProductComponent implements OnInit {
   Discount:DiscountOffers;
   Storename:string;
   StoreLogo:string;
-  ProductList:IPerson[];
+  ProductList:IProduct[];
   CategoryList:ICategory[];
   ClientName:string;
   IsPurshased:boolean;
-  constructor() {
+  Product:any={};
+  showDetials:boolean=false;
+  showProducts:boolean=false;
+
+  constructor(private getProducts:ProductServiceService) {
     this.Discount = DiscountOffers.down;
     this.Storename = "EGD Store";
     this.StoreLogo = "../../assets/images/background.jpg";
-    this.ProductList = [
-      {
-        ID:1,
-        Name:"Sweatshirt",
-        Quantity:80,
-        Price:400,
-        Img:"../../assets/images/product1.jpg"
-      },
-      {
-        ID:2,
-        Name:"trouser",
-        Quantity:50,
-        Price:300,
-        Img:"../../assets/images/product2.jpg"
-      },
-      {
-        ID:3,
-        Name:"Shose",
-        Quantity:70,
-        Price:250,
-        Img:"../../assets/images/product3.jpg"
-      }
-    ];
     this.CategoryList = [
       {
         ID:1,
@@ -60,8 +42,17 @@ export class ProductComponent implements OnInit {
     this.IsPurshased = false
   }
   toggleBuy(){
-    this.IsPurshased = !this.IsPurshased;
+    this.IsPurshased = true;
   }
   ngOnInit(): void {
+    this.ProductList = this.getProducts.GetAllProducts()
+  }
+  renderValues(){
+    this.ProductList = this.getProducts.GetAllProducts()
+    this.showProducts = !this.showProducts
+  }
+  viewProduct(id:any){
+    this.Product = this.getProducts.getProductById(id);
+    this.showDetials= true;
   }
 }

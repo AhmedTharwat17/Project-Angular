@@ -28,34 +28,50 @@
     <input type="text" [(ngModel)]="ClientName" class="form-control" aria-label="Sizing example input">
   </div>
     <ng-template #products>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Number</th>
-            <th scope="col">Product</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Price</th>
-            <th scope="col">Image</th>
-          </tr>
-        </thead>
-        <tbody *ngFor="let Product of ProductList">
+      <div *ngIf="showProducts">
+        <table class="table">
+          <thead>
             <tr>
-              <th scope="row">{{Product.ID}}</th>
-              <td>{{Product.Name}}</td>
-              <td>{{Product.Quantity}}</td>
-              <td>{{Product.Price}}</td>
-              <td>
-                <img class="table-image" src="{{Product.Img}}">
-              </td>
+              <th scope="col">Number</th>
+              <th scope="col">Product</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
+              <th scope="col">Image</th>
+              <th scope="col">View</th>
             </tr>
-        </tbody>
-      </table>
+          </thead>
+          <tbody *ngFor="let Product of ProductList">
+              <tr>
+                <th scope="row">{{Product.ID}}</th>
+                <td>{{Product.Name}}</td>
+                <td>{{Product.Quantity}}</td>
+                <td>{{Product.Price}}</td>
+                <td>
+                  <img class="table-image" src="{{Product.Img}}">
+                </td>
+                <td>
+                  <a class="alert-link" (click)="viewProduct(Product.ID)">view</a>
+                </td>
+              </tr>
+          </tbody>
+        </table>
+        <div *ngIf="showDetials" class="d-flex justify-content-center my-4">
+          <img src="{{Product.Img}}" style="margin-right:20px">
+          <div>
+            <h3>{{Product.Name}}</h3>
+            <p style="width: 300px; text-align:justify;">Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+            <p>Quantity : {{Product.Quantity}}</p>
+            <p>Price : {{Product.Price}}</p>
+            <a href="#" class="btn btn-primary">Update Product</a>
+        </div>
+    </div>
+      </div>
     </ng-template>
     <div class="d-flex justify-content-center mb-3" *ngIf="IsPurshased; else products;">
       <h3>Thanks for purchasing from our Store {{ClientName}}</h3>
     </div>
     <div class="d-flex justify-content-center mb-3">
-      <button type="button" class="btn btn-primary " style="width: 150px;" (click)="toggleBuy()">Buy</button>
+      <button type="button" class="btn btn-primary " style="width: 80%;" (click)="toggleBuy()">Buy</button>
     </div>
 </body>
 </html>
