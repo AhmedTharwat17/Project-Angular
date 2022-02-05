@@ -1,5 +1,4 @@
-import { Component , ViewChild } from '@angular/core';
-import { ProductComponent } from './product/product.component';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'myfirstapp-root',
@@ -8,9 +7,4 @@ import { ProductComponent } from './product/product.component';
 })
 export class AppComponent {
   title = 'Project-Lab';
-  messageFromChild:any;
-  @ViewChild(ProductComponent) child!:ProductComponent;
-  Display(){
-    this.child.renderValues();
-  }
 }

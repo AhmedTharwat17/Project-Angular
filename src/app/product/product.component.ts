@@ -55,4 +55,7 @@ export class ProductComponent implements OnInit {
     this.Product = this.getProducts.getProductById(id);
     this.showDetials= true;
   }
+  Display(){
+    this.renderValues();
+  }
 }

@@ -1,11 +1,27 @@
 import { Injectable } from '@angular/core';
-import { IProduct } from '../Shared Classes and types/interface';
+import { IPosts, IProduct , IUsers } from '../Shared Classes and types/interface';
+import { HttpClient } from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductServiceService {
-  constructor() { }
+  urlUser:string="https://jsonplaceholder.typicode.com/users";
+  urlPost:string="https://jsonplaceholder.typicode.com/posts";
+  constructor(private http:HttpClient) {}
+  getUsers():Observable<IUsers[]>{
+    return this.http.get<IUsers[]>(this.urlUser).pipe(catchError((err)=>
+    {
+      return throwError(()=>err.message||"Server error")
+    }))
+  }
+  getPosts():Observable<IPosts[]>{
+    return this.http.get<IPosts[]>(this.urlPost).pipe(catchError((err)=>
+    {
+      return throwError(()=>err.message||"Server error")
+    }))
+  }
   Products:IProduct[] = [
     {
       ID:1,
