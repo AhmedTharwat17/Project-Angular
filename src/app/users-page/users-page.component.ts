@@ -10,6 +10,7 @@ import { IUsers } from './../Shared Classes and types/interface';
 export class UsersPageComponent implements OnInit {
   UsersList:IUsers[];
   constructor(private userData:ProductServiceService) { }
+
   ngOnInit(): void {
     this.userData.getUsers().subscribe(data => {
       this.UsersList = data;

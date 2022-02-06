@@ -13,6 +13,11 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ProductsPageComponent } from './products-page/products-page.component';
 import { UsersPageComponent } from './users-page/users-page.component';
 import { PostsPageComponent } from './posts-page/posts-page.component';
+import { RegisterPageComponent } from './register-page/register-page.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { DiscountChildComponent } from './discount-child/discount-child.component';
+import { WithoutDiscountChildComponent } from './without-discount-child/without-discount-child.component';
+import { ProductDetialsComponent } from './product-detials/product-detials.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +28,12 @@ import { PostsPageComponent } from './posts-page/posts-page.component';
     HomePageComponent,
     ProductsPageComponent,
     UsersPageComponent,
-    PostsPageComponent
+    PostsPageComponent,
+    RegisterPageComponent,
+    LoginPageComponent,
+    DiscountChildComponent,
+    WithoutDiscountChildComponent,
+    ProductDetialsComponent
   ],
   imports: [
     BrowserModule,
