@@ -3,6 +3,7 @@ import { IPosts, IProduct , IUsers} from '../Shared Classes and types/interface'
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { AllProduct } from './../Shared Classes and types/interface';
+import { Users } from '../register-page/Register class/users';
 
 @Injectable({
   providedIn: 'root'
@@ -66,5 +67,9 @@ export class ProductServiceService {
     const product = this.Products.find(product => product.ID === prodId);
     if(!product || isNaN(prodId)) null;
     return product;
+  }
+  serverUser:string="http://localhost:4000/users";
+  sendDataRegister(user:Users){
+    return this.http.post(this.serverUser,user);
   }
 }
