@@ -9,6 +9,5 @@ module.exports = {
       socialMedia:req.body.socialMedia
     });
     user.save();
-    res.send("Welcome" + req.body.username)
   }
 }

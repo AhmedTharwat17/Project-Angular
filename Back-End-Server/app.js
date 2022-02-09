@@ -1,4 +1,5 @@
 const express = require('express')
+var cors = require('cors')
 //2
 const mainRoutes = require('./routes/main_routes')
 const userRoutes = require('./routes/users_routes')
@@ -11,7 +12,8 @@ const app = express()
 
 //4
 app.use(express.json())
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: true}))
+app.use(cors())
 //3
 mainRoutes(app)
 userRoutes(app)

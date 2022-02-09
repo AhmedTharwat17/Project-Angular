@@ -18,6 +18,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { DiscountChildComponent } from './discount-child/discount-child.component';
 import { WithoutDiscountChildComponent } from './without-discount-child/without-discount-child.component';
 import { ProductDetialsComponent } from './product-detials/product-detials.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ProductDetialsComponent } from './product-detials/product-detials.compo
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [ProductServiceService],
   bootstrap: [AppComponent]
